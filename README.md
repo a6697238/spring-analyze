@@ -7,5 +7,9 @@
  - c3p0连接池
  - springDriver 单连接
  - sharding-proxy 实现分库分表
+  ### Guava常用类
+  - guava集合，immutablelist，bimap，multiMap，multiSet
+  - 函数式编程
+  - listenable方法
  
 

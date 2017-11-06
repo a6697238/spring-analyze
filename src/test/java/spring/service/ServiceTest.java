@@ -1,25 +1,24 @@
-package spring.jdbc;
+package spring.service;
 
 import com.houlu.java.spring.data.jdbc.dao.UserJdbcDao;
 import com.houlu.java.spring.data.jdbc.entity.UserEntity;
 import com.houlu.java.spring.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import spring.BaseTest;
 
 /**
  * @author Lu Hou
- * @date 2017/9/23
- * @time 下午1:35
+ * @date 2017/11/5
+ * @time 上午10:38
  */
-public class DriverManagerDataSourceTest extends BaseTest{
+public class ServiceTest extends BaseTest {
 
     @Autowired
-    private UserJdbcDao userJdbcDao;
+    private UserService userService;
 
     @Test
     public void insertTest(){
-        userJdbcDao.create(new UserEntity());
+        userService.create(new UserEntity());
     }
 }

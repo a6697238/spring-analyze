@@ -10,13 +10,13 @@ import java.util.concurrent.Executors;
  * @date 2017/10/4
  * @time 下午3:16
  */
-public class GuavaFuture {
+public class GuavaSingleFuture {
 
     public static void main(String[] args) throws InterruptedException {
 
         ListeningExecutorService pool = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(3));
 
-        ListenableFuture<String> listenableFuture = pool.submit(new Callable<String>() {
+        ListenableFuture<String> listenableFuture1 = pool.submit(new Callable<String>() {
             public String call() throws Exception {
                 Thread.sleep(1000);
                 System.out.println(Thread.currentThread().getName() + ":finish");
@@ -25,7 +25,7 @@ public class GuavaFuture {
             }
         });
 
-        Futures.addCallback(listenableFuture, new FutureCallback<String>() {
+        Futures.addCallback(listenableFuture1, new FutureCallback<String>() {
             public void onSuccess(String s) {
                 System.out.println(s);
             }

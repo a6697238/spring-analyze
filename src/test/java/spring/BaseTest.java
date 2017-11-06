@@ -15,7 +15,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-config/spring-test-core.xml" })
-@TransactionConfiguration(transactionManager = "jdbcTransactionManager",defaultRollback = false)
+//@TransactionConfiguration(transactionManager = "jdbcTransactionManager",defaultRollback = false)
 public class BaseTest {
 
 

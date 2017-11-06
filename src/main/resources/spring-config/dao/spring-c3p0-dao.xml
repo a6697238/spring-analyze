@@ -13,16 +13,8 @@
         </property>
     </bean>
 
-    <bean id="datasource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <!--注意一下&characterEncoding要修改为&amp;characterEncoding-->
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
         <property name="jdbcUrl" value="${jdbc.url}" />
         <property name="user" value="${jdbc.user}" />
@@ -43,25 +35,21 @@
     </bean>
 
 
-    <bean id="jdbcTemplate"
-          class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource">
-            <ref bean="datasource"/>
-        </property>
-    </bean>
-
 
     <tx:annotation-driven transaction-manager="jdbcTransactionManager" />
     <bean id="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource">
-            <ref bean="datasource"/>
+            <ref bean="c3p0DataSource"/>
         </property>
     </bean>
 
 
-    <!--定义bean-->
-    <bean id="userDaoJdbcImpl" class="com.houlu.java.spring.data.jdbc.dao.Impl.UserDaoJdbcImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="c3p0DataSource">
+        </property>
     </bean>
+
+
 
 </beans>

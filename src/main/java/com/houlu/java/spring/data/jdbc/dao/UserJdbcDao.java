@@ -3,6 +3,9 @@ package com.houlu.java.spring.data.jdbc.dao;
 
 import com.houlu.java.spring.data.jdbc.entity.UserEntity;
 import com.houlu.java.spring.data.jdbc.mapper.UserJdbcMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 17/3/12 上午10:42
  */
+@Component
 public interface UserJdbcDao {
 
     /**

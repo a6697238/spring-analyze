@@ -3,10 +3,10 @@ package com.houlu.java.spring.data.jdbc.dao.Impl;
 import com.houlu.java.spring.data.jdbc.dao.UserJdbcDao;
 import com.houlu.java.spring.data.jdbc.entity.UserEntity;
 import com.houlu.java.spring.data.jdbc.mapper.UserJdbcMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -18,14 +18,17 @@ import java.util.List;
  * @since 17/3/12 上午10:43
  */
 
+@Component
 public class UserDaoJdbcImpl implements UserJdbcDao {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
 
     public void create(UserEntity userEntity) {
         String SQL = "insert into jdbc_user (user_name,sex,age,email,phone,version,last_modify_time,create_time) values (?, ?,?,?,?,?, ?,?)";
@@ -68,7 +71,6 @@ public class UserDaoJdbcImpl implements UserJdbcDao {
         jdbcTemplate.update(SQL, id);
     }
 
-    @Transactional
     public void update(UserEntity userEntity) {
         String SQL = "update jdbc_user set user_name = ? ,sex = ?,age = ?,email = ?,phone=?,version=?,last_modify_time=? where id = ?";
         jdbcTemplate.update(SQL, new Object[]{
