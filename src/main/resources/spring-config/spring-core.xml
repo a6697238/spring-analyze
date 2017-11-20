@@ -12,7 +12,7 @@
 
     <!--<import resource="dao/spring-jdbc-dao.xml"/>-->
     <!--<import resource="mapper/spring-c3p0-mapper.xml"/>-->
-    <!--<import resource="mapper/spring-proxy-mapper.xml"/>-->
+    <import resource="dao/spring-proxy-dao.xml"/>
     <import resource="spring-aop.xml"/>
 
 

@@ -32,7 +32,7 @@ public class MybatisTest {
             userEntity.setAge(10l);
             //使用mapper接口执行SQL
             MybatisUserEntityMapper userEntityMapper =  session.getMapper(MybatisUserEntityMapper.class);
-//            userEntityMapper.insert(userEntity);
+            userEntityMapper.insert(userEntity);
             //使用statement执行SQL
 //            session.insert("com.houlu.java.spring.data.mybatis.mapper.MybatisUserEntityMapper.insert",userEntity);
 //            session.commit();

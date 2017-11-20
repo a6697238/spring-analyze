@@ -1,10 +1,12 @@
 package com.houlu.java.spring.data.mybatis.interceptor;
 
+import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.plugin.*;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Properties;
 
 /**
@@ -12,7 +14,10 @@ import java.util.Properties;
  * @date 2017/11/5
  * @time 下午8:52
  */
-@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class, Integer.class}) })
+@Intercepts({
+        @Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}),
+        @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})
+})
 public class SQLStatsInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

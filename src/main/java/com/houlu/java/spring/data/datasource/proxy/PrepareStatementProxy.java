@@ -22,13 +22,15 @@ public class PrepareStatementProxy extends ProxyTemplate<PreparedStatement> {
     @Override
     public Object invokePoint(Object proxy, Method method, Object[] args) throws Exception {
         ResultSet resultSet = null;
+        Object result = null;
         for (PreparedStatement preparedStatement : getProxyContext().getPreparedStatementList()) {
-            resultSet = (ResultSet) method.invoke(preparedStatement, args);
-            if (null != resultSet) {
-                getProxyContext().getResultSetList().add(resultSet);
-            }
+//            resultSet = (ResultSet) method.invoke(preparedStatement, args);
+//            if (null != resultSet) {
+//                getProxyContext().getResultSetList().add(resultSet);
+//            }
+            result = method.invoke(preparedStatement, args);
         }
-        return ProxyFactory.getResultSetProxy(null, getProxyContext());
-
+//        return ProxyFactory.getResultSetProxy(null, getProxyContext());
+        return result;
     }
 }
